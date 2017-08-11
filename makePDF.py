@@ -1,7 +1,9 @@
 	# ST2/ST3 compat
 from __future__ import print_function
 
+import datetime
 import sublime
+
 if sublime.version() < '3000':
 	# we are on ST2 and Python 2.X
 	_ST3 = False
@@ -246,6 +248,7 @@ class LatextoolsBuildSelector(sublime_plugin.WindowCommand):
 
 
 # First, define thread class for async processing
+startTime = datetime.datetime.now()
 
 class CmdThread ( threading.Thread ):
 
@@ -258,6 +261,9 @@ class CmdThread ( threading.Thread ):
 	def run ( self ):
 		print ("Welcome to thread " + self.getName())
 		self.caller.output("[Compiling " + self.caller.file_name + "]")
+
+		global startTime
+		startTime = datetime.datetime.now()
 
 		env = dict(os.environ)
 		if self.caller.path:
@@ -310,7 +316,7 @@ class CmdThread ( threading.Thread ):
 				else:
 					# don't know what the command is
 					continue
-				
+
 				# Now actually invoke the command, making sure we allow for killing
 				# First, save process handle into caller; then communicate (which blocks)
 				with self.caller.proc_lock:
@@ -318,7 +324,7 @@ class CmdThread ( threading.Thread ):
 				out, err = proc.communicate()
 				self.caller.builder.set_output(out.decode(self.caller.encoding,"ignore"))
 
-				
+
 				# Here the process terminated, but it may have been killed. If so, stop and don't read log
 				# Since we set self.caller.proc above, if it is None, the process must have been killed.
 				# TODO: clean up?
@@ -521,8 +527,14 @@ class CmdThread ( threading.Thread ):
 
 				traceback.print_exc()
 
+			# https://stackoverflow.com/questions/14190045/how-to-convert-datetime-timedelta-to-minutes-hours-in-python
+			seconds = (datetime.datetime.now() - startTime).total_seconds()
+			hours   = int(seconds // 3600)
+			minutes = int((seconds % 3600) // 60)
+			seconds = int(seconds % 60)
+
 			self.caller.output(content)
-			self.caller.output("\n\n[Done!]\n")
+			self.caller.output("\n\n[Done in {hours:02d}:{minutes:02d}:{seconds:02d} seconds!]\n".format(**vars()))
 
 			if _HAS_PHANTOMS:
 				self.caller.errors = locals().get("errors", [])
@@ -984,7 +996,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 						html_text = html.escape(text, quote=False)
 						phantom_content = """
 							<body id="inline-error">
-								{stylesheet} 
+								{stylesheet}
 								<div class="lt-error {error_class}">
 									<span class="message">{html_text}</span>
 									<a href="hide">{cancel_char}</a>
