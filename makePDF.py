@@ -626,7 +626,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 
 		# Output panel: from exec.py
 		if not hasattr(self, 'output_view'):
-			self.output_view = self.window.get_output_panel("latextools")
+			self.output_view = self.window.get_output_panel("exec")
 
 		output_view_settings = self.output_view.settings()
 		output_view_settings.set("result_file_regex", file_regex)
@@ -649,7 +649,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 
 		# Dumb, but required for the moment for the output panel to be picked
 		# up as the result buffer
-		self.window.get_output_panel("latextools")
+		self.window.get_output_panel("exec")
 
 		self.hide_panel_level = get_setting(
 			"hide_build_panel", "no_warnings", view=view)
@@ -766,7 +766,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 					"Check your LaTeXTools Preferences".format(builder_name)
 				)
 				self.window.run_command(
-					'hide_panel', {"panel": "output.latextools"})
+					'hide_panel', {"panel": "output.exec"})
 				return
 
 		if builder_name == 'script' and script_commands:
@@ -859,7 +859,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 		if force or self.hide_panel_level != 'always':
 			f = functools.partial(
 				self.window.run_command,
-				"show_panel", {"panel": "output.latextools"}
+				"show_panel", {"panel": "output.exec"}
 			)
 			run_on_main_thread(f, default_value=None)
 

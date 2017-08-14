@@ -299,13 +299,6 @@ LaTeX Package keymap for Linux
 			{"key": "selector", "operator": "equal", "operand": "text.tex"}],
 		"command": "latex_toc_quickpanel"},
 
-	// Show panel
-	{ "keys": ["shift+escape"],
-		"context": [
-			{"key": "selector", "operator": "equal", "operand": "text.tex.latex"},
-			{"key": "panel_visible", "operator": "equal", "operand": false }],
-		"command": "show_panel", "args": {"panel": "output.latextools"}},
-
 		// Auto-pair ``$''
 		// Lifted from default file
 	// insert matching $
