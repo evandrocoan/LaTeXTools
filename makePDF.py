@@ -260,7 +260,7 @@ class CmdThread ( threading.Thread ):
 
 	def run ( self ):
 		print ("Welcome to thread " + self.getName())
-		self.caller.output("[Compiling " + self.caller.file_name + "]")
+		self.caller.output("[Compiling " + self.caller.file_name + "] " + datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S"))
 
 		global startTime
 		startTime = datetime.datetime.now()
