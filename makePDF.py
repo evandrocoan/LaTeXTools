@@ -645,7 +645,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 				get('color_scheme')
 			)
 
-		self.output_view.set_read_only(True)
+		self.output_view.set_read_only(False)
 
 		# Dumb, but required for the moment for the output panel to be picked
 		# up as the result buffer
@@ -853,7 +853,7 @@ class make_pdfCommand(sublime_plugin.WindowCommand):
 		# if selection_was_at_end:
 		#     self.output_view.show(self.output_view.size())
 		# self.output_view.end_edit(edit)
-		self.output_view.set_read_only(True)
+		self.output_view.set_read_only(False)
 
 	def show_output_panel(self, force=False):
 		if force or self.hide_panel_level != 'always':
