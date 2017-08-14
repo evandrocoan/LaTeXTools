@@ -167,7 +167,7 @@ class LatextoolsSmartPasteCommand(sublime_plugin.WindowCommand):
             content = content.strip('"')
 
         is_empty_line = all(
-            view.substr(not view.line(sel.b)).strip()
+            not view.substr(view.line(sel.b)).strip()
             for sel in view.sel())
         maybe_image = _is_possible_image_path(content)
 
@@ -177,19 +177,3 @@ class LatextoolsSmartPasteCommand(sublime_plugin.WindowCommand):
             _download_insert_image(window, view, content, offline=True)
         else:
             window.run_command("paste")
-
-
-class LatextoolsAutoInserLabelListener(sublime_plugin.EventListener):
-    def on_query_context(self, view, key, operator, operand, match_all):
-        if key != "latextools.setting.enable_smart_paste":
-            return
-        result = get_setting("enable_smart_paste", True)
-        if operator == sublime.OP_EQUAL:
-            result = result == operand
-        elif operator == sublime.OP_NOT_EQUAL:
-            result = result != operand
-        else:
-            raise Exception(
-                "latextools.setting.enable_smart_paste; "
-                "Invalid operator must be EQUAL or NOT_EQUAL.")
-        return result
