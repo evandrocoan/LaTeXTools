@@ -107,7 +107,7 @@
 				</dict>
 			</array>
 			<key>end</key>
-			<string>^(?=\[Done!\])</string>
+			<string>^(?=\[Done in.*seconds!\])</string>
 			<key>endCaptures</key>
 			<dict>
 				<key>0</key>
