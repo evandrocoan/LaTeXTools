@@ -52,7 +52,7 @@ class LatextoolsRevealOutputDirectoryCommand(sublime_plugin.WindowCommand):
 
     def is_visible(self, *args):
         view = self.window.active_view()
-        if not view.score_selector(0, "text.tex.latex"):
+        if not view.score_selector(0, "text.tex"):
             return False
         return bool(get_setting("output_directory"))
 
