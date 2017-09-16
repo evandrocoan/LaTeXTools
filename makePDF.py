@@ -249,6 +249,7 @@ class LatextoolsBuildSelector(sublime_plugin.WindowCommand):
 
 # First, define thread class for async processing
 startTime = datetime.datetime.now()
+lastElapsedTime = 0
 
 class CmdThread ( threading.Thread ):
 
@@ -259,8 +260,14 @@ class CmdThread ( threading.Thread ):
 		threading.Thread.__init__ ( self )
 
 	def run ( self ):
+		hours   = int(lastElapsedTime // 3600)
+		minutes = int((lastElapsedTime % 3600) // 60)
+		seconds = int(lastElapsedTime % 60)
+
 		print ("Welcome to thread " + self.getName())
-		self.caller.output("[Compiling " + self.caller.file_name + "] " + datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S"))
+		self.caller.output("[Compiling " + self.caller.file_name + "] "
+		        + datetime.datetime.now().strftime("%Y-%m-%d, %H:%M:%S")
+		        + " ({hours:02d}:{minutes:02d}:{seconds:02d} seconds)".format(**vars()))
 
 		global startTime
 		startTime = datetime.datetime.now()
@@ -527,11 +534,13 @@ class CmdThread ( threading.Thread ):
 
 				traceback.print_exc()
 
+			global lastElapsedTime
+
 			# https://stackoverflow.com/questions/14190045/how-to-convert-datetime-timedelta-to-minutes-hours-in-python
-			seconds = (datetime.datetime.now() - startTime).total_seconds()
-			hours   = int(seconds // 3600)
-			minutes = int((seconds % 3600) // 60)
-			seconds = int(seconds % 60)
+			lastElapsedTime = (datetime.datetime.now() - startTime).total_seconds()
+			hours           = int(lastElapsedTime // 3600)
+			minutes         = int((lastElapsedTime % 3600) // 60)
+			seconds         = int(lastElapsedTime % 60)
 
 			self.caller.output(content)
 			self.caller.output("\n\n[Done in {hours:02d}:{minutes:02d}:{seconds:02d} seconds!]\n".format(**vars()))
