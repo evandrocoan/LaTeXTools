@@ -261,6 +261,8 @@ class CmdThread ( threading.Thread ):
 		self.startTime = datetime.datetime.now()
 
 	def run ( self ):
+		global lastElapsedTime
+
 		hours   = int(lastElapsedTime // 3600)
 		minutes = int((lastElapsedTime % 3600) // 60)
 		seconds = int(lastElapsedTime % 60)
@@ -533,8 +535,6 @@ class CmdThread ( threading.Thread ):
 				content.append("Please let us know on GitHub. Thanks!")
 
 				traceback.print_exc()
-
-			global lastElapsedTime
 
 			# https://stackoverflow.com/questions/14190045/how-to-convert-datetime-timedelta-to-minutes-hours-in-python
 			lastElapsedTime = (datetime.datetime.now() - self.startTime).total_seconds()
