@@ -229,6 +229,7 @@ def parse_tex_log(data, root_dir):
 
 	state = STATE_NORMAL
 	last_log_lines = ""
+	emergency_stop_sample = " Emergency stop"
 	last_iteration_lines = deque([],7)
 
 	# Use our own iterator instead of for loop
@@ -378,7 +379,8 @@ def parse_tex_log(data, root_dir):
 			# skip everything except "l.<nn> <text>"
 			debug("Reporting error in line: " + line)
 			# We check for emergency stops here, too, because it may occur before the l.nn text
-			if "! Emergency stop." in line:
+			if emergency_stop_sample in line:
+				state = STATE_NORMAL
 				emergency_stop = True
 				debug("Emergency stop found")
 				continue
@@ -468,7 +470,7 @@ def parse_tex_log(data, root_dir):
 			continue
 
 		# If tex just stops processing, we will be left with files on stack, so we keep track of it
-		if "! Emergency stop." in line:
+		if emergency_stop_sample in line:
 			state = STATE_SKIP
 			emergency_stop = True
 			debug("Emergency stop found")
