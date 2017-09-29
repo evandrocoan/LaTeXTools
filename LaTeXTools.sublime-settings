@@ -52,7 +52,7 @@
 	// Keep focus on Sublime Text after building (true) or switch to PDF viewer (false)
 	// If you are on Windows or Linux and using ST2, you may need to set the
 	// "sublime_executable" setting for this to work in your platform settings.
-	"keep_focus": true,
+	"keep_focus": false,
 	// Sync PDF to current editor position after building (true) or not
 	"forward_sync": true,
 
@@ -71,7 +71,7 @@
 	// "always" (always show command completions)
 	// "prefixed" (default, show command completions if the current word is prefixed with '\')
 	// "never" (never show command completions)
-	"command_completion": "prefixed",
+	"command_completion": "never",
 
 	// valid texfile extensions
 	"tex_file_exts": [".tex"],
@@ -229,7 +229,7 @@
 		// "texpath" : "C:\\texlive\\2011\\bin\\win32;$PATH",
 		"texpath" : "",
 		// TeX distro: "miktex" or "texlive"
-		"distro" : "miktex",
+		"distro" : "texlive",
 		// Command to invoke Sumatra. If blank, "SumatraPDF.exe" is used (it has to be on your PATH)
 		"sumatra": "",
 		// Command to invoke Sublime Text. Used if the keep_focus toggle is true.
@@ -305,7 +305,7 @@
 	// if you do so, however, note that the path will be interpreted
 	// relative to the location of your project file
 
-	"aux_directory": "",
+	"aux_directory": "<<cache>>",
 
 	// OPTION: "output_directory"
 	// Specifies the output directory
@@ -341,7 +341,7 @@
 	// if you do so, however, note that the path will be interpreted
 	// relative to the location of your project file
 
-	"output_directory": "",
+	"output_directory": "<<cache>>",
 
 	// OPTION: "jobname"
 	// Specifies the jobname to use when building the document
@@ -420,6 +420,11 @@
 		// (built-ins): true shows the log of each command in the output panel
 		"display_log" : false,
 
+		// Where to find official (!) and extended documentation for
+		// tex/latex's commandline options (especially -interaction modes)?
+		// https://tex.stackexchange.com/questions/91592
+		"options" : ["-file-line-error", "-halt-on-error"],
+
 		// Platform-specific settings:
 		"osx" : {
 			// See README or third-party documentation
@@ -451,13 +456,13 @@
 	// "no_warnings" (only hide the panel if no warnings occur)
 	// "no_badboxes" (only hide the panel if no badbox messages occur when badboxes are enabled) and
 	// "never" (default, never hide the build panel)
-	"hide_build_panel": "no_badboxes",
+	"hide_build_panel": "never",
 
 	// OPTION: "display_bad_boxes"
 	// controls whether or not to display any bad boxes in the build output
 	// if this is not set to true, the setting "no_badboxes" for
 	// "hide_build_panel" is equivalent to "no_warnings"
-	"display_bad_boxes": false,
+	"display_bad_boxes": true,
 
 	// OPTION: "show_error_phantoms"
 	// (ST3, Build 3118+ only)
@@ -467,7 +472,7 @@
 	// "errors" (only show errors, which breaks the compilation)
 	// "warnings" (default, show errors and warnings)
 	// "badboxes" (show errors, warnings, and badboxes)
-	"show_error_phantoms": "warnings",
+	"show_error_phantoms": "badboxes",
 
 	// number of seconds to display the "build succeeded" or "build failed"
 	// message
@@ -527,7 +532,7 @@
 	// specifies whether LaTeXTools should open the PDF file on a
 	// successful build. If set to false, the PDF file won't be opened
 	// unless explicitly launched using C-l,v or C-l,j
-	"open_pdf_on_build": true,
+	"open_pdf_on_build": false,
 
 	// OPTION: "disable_focus_hack"
 	// if set to true, this will stop LaTeXTools from attempting to steal focus
@@ -542,7 +547,7 @@
 	// image types you use in latex
 	// these types will be used for autocompletion and
 	// opening of included images, when no extension is written
-	"image_types": ["png", "pdf", "jpg", "jpeg", "eps"],
+	"image_types": ["png", "pdf", "jpg", "jpeg", "eps", "gif", "bmp"],
 
 // ------------------------------------------------------------------
 // Bibliographic references
@@ -609,6 +614,10 @@
 // ------------------------------------------------------------------
 // Cache options
 // ------------------------------------------------------------------
+
+	// whether the local cache should be hidden in the sublime text cache path
+	// (true) or in the same directory (root) as your latex file (false)
+	"hide_local_cache": true,
 
 	// settings for caches to update on load
 	// leaving these as `true` will ensure LaTeXTools pre-caches the appropriate
