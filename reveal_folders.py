@@ -54,6 +54,7 @@ class LatextoolsRevealOutputDirectoryCommand(sublime_plugin.WindowCommand):
         view = self.window.active_view()
         if not view.score_selector(0, "text"):
             return False
+        # print( "LatextoolsRevealOutputDirectoryCommand, is_visible: " str( bool(get_setting("output_directory")) ) )
         return bool(get_setting("output_directory"))
 
     def run(self):
