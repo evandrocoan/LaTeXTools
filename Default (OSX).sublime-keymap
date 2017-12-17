@@ -2,6 +2,16 @@
 LaTeX Package keymap for OS X
 */
 [
+	{
+		"keys": ["tab"],
+		"command": "latextools_confirm_quickpanel",
+		"context":
+		[
+			{ "key": "overlay_visible" },
+			{ "key": "latextools.input_overlay_visible" },
+		],
+	},
+
 	// these also override ST3 commands, but we simply run the same commands
 	// it is necessary so on ST2 we can implement our build selector
 	{	"keys": ["super+b"],
