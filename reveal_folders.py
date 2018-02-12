@@ -87,7 +87,9 @@ class LatextoolsRevealTexRootDirectoryCommand(sublime_plugin.WindowCommand):
 
     def is_visible(self, *args):
         view = self.window.active_view()
-        return bool(view.score_selector(0, "text.tex.latex"))
+        if view:
+            return bool(view.score_selector(0, "text.tex.latex"))
+        return False
 
     def run(self):
         window = self.window
