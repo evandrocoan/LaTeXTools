@@ -48,7 +48,7 @@ class ClearLocalLatexCacheCommand(sublime_plugin.WindowCommand):
 
 	def is_visible(self, *args):
 		view = self.window.active_view()
-        if view:
+		if view:
 			return bool(view.score_selector(0, "text.tex.latex"))
 		return False
 
@@ -72,7 +72,7 @@ class ClearBibliographyCacheCommand(sublime_plugin.WindowCommand):
 
 	def is_visible(self, *args):
 		view = self.window.active_view()
-        if view:
+		if view:
 			return (
 				bool(view.score_selector(0, "text.tex.latex")) or
 				is_bib_buffer(view)
@@ -127,7 +127,7 @@ class DeleteTempFilesCommand(sublime_plugin.WindowCommand):
 
 	def is_visible(self, *args):
 		view = self.window.active_view()
-        if view:
+		if view:
 			return bool(view.score_selector(0, "text.tex.latex"))
 		return False
 
