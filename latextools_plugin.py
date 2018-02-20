@@ -208,9 +208,8 @@ def add_plugin_path(path, glob='*.py'):
 
                 sys.path.pop(0)
 
-    print('Loaded LaTeXTools plugins {0} from path {1}'.format(
-        list(set(internal._REGISTRY.keys()) - previous_plugins),
-        path))
+    plugins = list(set(internal._REGISTRY.keys()) - previous_plugins)
+    # print('Loaded LaTeXTools glob {} plugin(s) {} from path {}'.format(glob, plugins, path))
 
 
 def add_whitelist_module(name, module=None):
@@ -536,7 +535,7 @@ def plugin_loaded():
 def _plugin_loaded():
     internal._REGISTRY = LaTeXToolsPluginRegistry()
 
-    print('Loading LaTeXTools plugins...')
+    # print('Loading LaTeXTools plugins...')
 
     for name, cls in internal._REGISTERED_CLASSES_TO_LOAD:
         internal._REGISTRY[name] = cls
