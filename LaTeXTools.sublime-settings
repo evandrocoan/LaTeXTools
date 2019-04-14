@@ -426,16 +426,16 @@
 		"options" : ["-file-line-error", "-halt-on-error"],
 
 		// Platform-specific settings:
+		// See README or third-party documentation
 		"osx" : {
-			// See README or third-party documentation
 		},
 
 		"windows" : {
-			// See README or third-party documentation
+			// --max-print-line is only supported on Windows
+			"options" : ["-file-line-error", "-halt-on-error", "--max-print-line=10000"],
 		},
 
 		"linux" : {
-			// See README or third-party documentation
 		}
 	},
 
