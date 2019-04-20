@@ -423,7 +423,10 @@
 		// Where to find official (!) and extended documentation for
 		// tex/latex's commandline options (especially -interaction modes)?
 		// https://tex.stackexchange.com/questions/91592
-		"options" : ["-file-line-error", "-halt-on-error"],
+		//
+		// --max-print-line is only supported on Windows
+		// https://github.com/SublimeText/LaTeXTools/issues/1404
+		"options" : ["-file-line-error", "-halt-on-error", "--max-print-line=10000"],
 
 		// Platform-specific settings:
 		// See README or third-party documentation
@@ -431,8 +434,6 @@
 		},
 
 		"windows" : {
-			// --max-print-line is only supported on Windows
-			"options" : ["-file-line-error", "-halt-on-error", "--max-print-line=10000"],
 		},
 
 		"linux" : {
