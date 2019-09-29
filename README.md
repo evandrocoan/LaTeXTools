@@ -48,11 +48,27 @@ This plugin provides several features that simplify working with LaTeX files:
 * Easily view package documentation
 * Word counts
 
-## Requirements and Setup
+## Installation
 
-The easiest way to install LaTeXTools is via [Package Control](https://packagecontrol.io/). See [the Package Control installation instructions](https://packagecontrol.io/installation) for details on how to set it up (it's very easy.) Once you have Package Control up and running, invoke it (via the **Command Palette** from the Tools menu, or from Preferences), select the **Install Package** command, and find **LaTeXTools**.
+### By Package Control
 
-If you prefer a more hands-on approach, you can always clone the git repository, or else just grab this plugin's .zip file from GitHub and extract it to your Packages directory (you can open it easily from ST, by clicking on **Preferences > Browse Packages**). Then, (re)launch ST. Please note that if you do a manual installation, the Package **must** be named **LaTeXTools**.
+1. Download & Install `Sublime Text 3` (https://www.sublimetext.com/3)
+1. Go to the menu `Tools -> Install Package Control`, then,
+   wait few seconds until the `Package Control` installation finishes
+1. Go to the menu `Preferences -> Package Control`
+1. Type `Package Control Add Channel` on the opened quick panel and press <kbd>Enter</kbd>
+1. Then, input the following address and press <kbd>Enter</kbd>
+   ```
+   https://raw.githubusercontent.com/evandrocoan/StudioChannel/master/channel.json
+   ```
+1. Now, go again to the menu `Preferences -> Package Control`
+1. This time type `Package Control Install Package` on the opened quick panel and press <kbd>Enter</kbd>
+1. Then, search for `LaTeXTools` and press <kbd>Enter</kbd>
+
+See also:
+1. [ITE - Integrated Toolset Environment](https://github.com/evandrocoan/ITE)
+1. [Package control docs](https://packagecontrol.io/docs/usage) for details.
+
 
 Finally, you'll need to have a working TeX installation and a PDF viewer. LaTeXTools supports [MacTeX](https://www.tug.org/mactex/), [MiKTeX](http://www.miktex.org/) and [TeXLive](https://www.tug.org/texlive/) as TeX systems and [Skim](http://skim-app.sourceforge.net/), [Sumatra PDF](http://sumatrapdfreader.org/free-pdf-reader.html), [Evince](https://wiki.gnome.org/Apps/Evince), [Okular](https://okular.kde.org/), and [Zathura](https://pwmt.org/projects/zathura/) as PDF viewers. For detailed instructions on how to set these up, please see [our online documentation](http://latextools.readthedocs.io/en/latest/install/)!
 
