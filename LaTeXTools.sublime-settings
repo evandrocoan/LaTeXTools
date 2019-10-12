@@ -426,7 +426,12 @@
 		//
 		// --max-print-line is only supported on Windows
 		// https://github.com/SublimeText/LaTeXTools/issues/1404
-		"options" : ["-file-line-error", "-halt-on-error", "--max-print-line=10000"],
+		"options" : [
+			"-file-line-error",
+			"-halt-on-error",
+			"--max-print-line=10000",
+			"-shell-escape",
+		],
 
 		// Platform-specific settings:
 		// See README or third-party documentation
