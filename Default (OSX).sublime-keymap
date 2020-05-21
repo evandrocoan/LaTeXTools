@@ -387,20 +387,11 @@ LaTeX Package keymap for OS X
 
 		// overlay specifications (Tobias Schmidt)
 	// FIXME: the scope for the four following should actually be text.tex.latex.beamer, but for some reason this does not seem to work
-	{ "keys": ["<"], "command": "insert_snippet", "args": {"contents": "<"},
-	"context":
-		[
-			{"key": "selector", "operator": "equal", "operand": "text.tex.latex - (string.other.math, meta.environment.math)"},
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
-			{ "key": "preceding_text", "operator": "regex_contains", "operand": "\\\\(?:item|only|textbf|color|onslide|only|uncover|visible|invisible|alt|temporal)$", "match_all": true }
-		]
-	},
 	{ "keys": ["<"], "command": "insert_snippet", "args": {"contents": "<${1:+-}>$0"},
 	"context":
 		[
 			{"key": "selector", "operator": "equal", "operand": "text.tex.latex - (string.other.math, meta.environment.math)"},
-			{ "key": "setting.auto_match_enabled_selection", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
 			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "\\\\(?:item|only|textbf|color|onslide|only|uncover|visible|invisible|alt|temporal)$", "match_all": true }
 		]
